@@ -57,7 +57,8 @@ class Circle {
     context.closePath();
   }
 }
-let randomRadius = Math.floor(Math.random() * 100) + 30;
+let maxRadius = Math.min(canvasRandom.width, canvasRandom.height) / 2 - 10;
+let randomRadius = Math.floor(Math.random() * maxRadius) + 10;
 let randomX = Math.random() * (canvasRandom.width - 2 * randomRadius) + randomRadius;
 let randomY = Math.random() * (canvasRandom.height - 2 * randomRadius) + randomRadius;
 //let randomRadius = Math.floor(Math.random() * 100 + 30);
@@ -70,20 +71,22 @@ miCirculoRandom.draw(ctxRandom);
 
 let arrayCircle = [];
 
-function generarcolor(){
+function randomColor(){
   let r = Math.floor(Math.random() * 256);
   let g = Math.floor(Math.random() * 256);
   let b = Math.floor(Math.random() * 256);
 
-  return rgb(r,g,b)
+  return `rgb(${r},${g},${b})`;
 }
 
 for (let i = 0; i < 5; i++) {
-  let randomRadius = Math.floor(Math.random() * 100 + 30);
+  let color = randomColor();
+  let maxRadius = Math.min(canvasRandom.width, canvasRandom.height) / 2 - 10;
+  let randomRadius = Math.floor(Math.random() * maxRadius) + 10;
   let randomX = Math.random() * (canvasRandom.width - 2 * randomRadius) + randomRadius;
   let randomY = Math.random() * (canvasRandom.height - 2 * randomRadius) + randomRadius;
 
-  let miCirculoMultiple = new Circle(randomX, randomY, randomRadius, generarcolor, i + 1, "rgb(numero,numero,numero)", "rgb(82, 191, 89)");
+  let miCirculoMultiple = new Circle(randomX, randomY, randomRadius, color, i + 1, color, "rgb(82, 191, 89)");
 
   arrayCircle.push(miCirculoMultiple);
   arrayCircle[i].draw(ctxMultiple);
